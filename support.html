@@ -1,0 +1,308 @@
+<title>Support — Mecaly</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@700;800&display=swap">
+<style>
+:root {
+  --bg: #ffffff; --bg2: #f8f8f6; --fg: #1a1a1a; --fg2: #4a4a4a; --fg3: #8a8a8a;
+  --border: #e5e5e0; --blue: #1E3A5F; --blue-mid: #2A5080; --orange: #E8722A;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111; --bg2: #1a1a1a; --fg: #f0f0ee; --fg2: #aaa; --fg3: #666; --border: #2a2a2a; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] { --bg: #111; --bg2: #1a1a1a; --fg: #f0f0ee; --fg2: #aaa; --fg3: #666; --border: #2a2a2a; color-scheme: dark; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.7; }
+
+nav {
+  position: sticky; top: env(safe-area-inset-top,0px); z-index: 100;
+  background: rgba(30,58,95,0.97); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding-block: 14px;
+  padding-left: max(24px, env(safe-area-inset-left,0px));
+  padding-right: max(24px, env(safe-area-inset-right,0px));
+}
+.nav-inner { max-width: 860px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo-text { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.15rem; font-weight: 700; color: #fff; letter-spacing: -0.02em; }
+.nav-back { color: rgba(255,255,255,0.7); font-size: 0.85rem; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+.nav-back:hover { color: #fff; }
+.lang-toggle { display: flex; background: rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; }
+.lang-toggle button { background: none; border: none; color: rgba(255,255,255,0.6); font-size: 0.8rem; font-weight: 600; padding: 6px 12px; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+.lang-toggle button.active { background: rgba(255,255,255,0.2); color: #fff; }
+
+.hero-strip {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%);
+  padding-block: 56px 48px;
+  padding-left: max(24px, env(safe-area-inset-left,0px));
+  padding-right: max(24px, env(safe-area-inset-right,0px));
+  text-align: center;
+}
+.hero-strip h1 { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(1.8rem,4vw,2.6rem); font-weight: 800; color: #fff; letter-spacing: -0.03em; margin-bottom: 10px; }
+.hero-strip p { color: rgba(255,255,255,0.65); font-size: 0.95rem; }
+
+.contact-hero {
+  background: var(--bg2); border-bottom: 1px solid var(--border);
+  padding-block: 40px;
+  padding-left: max(24px, env(safe-area-inset-left,0px));
+  padding-right: max(24px, env(safe-area-inset-right,0px));
+}
+.contact-hero-inner { max-width: 760px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+.contact-hero h2 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--fg); margin-bottom: 6px; }
+.contact-hero p { font-size: 0.9rem; color: var(--fg2); }
+.contact-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--orange); color: #fff; padding: 13px 28px; border-radius: 10px; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: all 0.2s; white-space: nowrap; }
+.contact-btn:hover { background: #F4915A; transform: translateY(-1px); }
+.email-display { font-size: 0.85rem; color: var(--fg3); margin-top: 8px; }
+
+main {
+  max-width: 760px; margin: 0 auto;
+  padding-block: 56px 80px;
+  padding-left: max(24px, env(safe-area-inset-left,0px));
+  padding-right: max(24px, env(safe-area-inset-right,0px));
+}
+
+.faq-section h2 {
+  font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.5rem; font-weight: 800;
+  color: var(--fg); letter-spacing: -0.02em; margin-bottom: 28px;
+}
+
+.faq-item {
+  border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-bottom: 12px;
+}
+.faq-q {
+  width: 100%; text-align: left; background: none; border: none; cursor: pointer;
+  padding: 18px 20px; display: flex; justify-content: space-between; align-items: center; gap: 12px;
+  font-family: 'Inter', sans-serif; font-size: 0.95rem; font-weight: 600; color: var(--fg);
+  transition: background 0.15s;
+}
+.faq-q:hover { background: var(--bg2); }
+.faq-q .arrow { color: var(--orange); font-size: 1.1rem; transition: transform 0.25s; flex-shrink: 0; }
+.faq-item.open .faq-q .arrow { transform: rotate(180deg); }
+.faq-a {
+  display: none; padding: 0 20px 18px; font-size: 0.9rem; color: var(--fg2); line-height: 1.65;
+  border-top: 1px solid var(--border);
+}
+.faq-a p { margin-top: 14px; }
+.faq-a ul { margin: 10px 0 0 0; padding-left: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.faq-a ul li { padding-left: 18px; position: relative; }
+.faq-a ul li::before { content: '•'; color: var(--orange); position: absolute; left: 0; font-weight: 700; }
+.faq-item.open .faq-a { display: block; }
+
+.resources { margin-top: 48px; }
+.resources h2 {
+  font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.3rem; font-weight: 800;
+  color: var(--fg); margin-bottom: 20px;
+}
+.resource-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+.resource-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 20px; text-decoration: none; color: var(--fg); transition: all 0.2s;
+}
+.resource-card:hover { border-color: var(--orange); transform: translateY(-2px); }
+.resource-card .rc-icon { font-size: 1.5rem; margin-bottom: 10px; }
+.resource-card .rc-title { font-weight: 700; font-size: 0.9rem; margin-bottom: 4px; }
+.resource-card .rc-desc { font-size: 0.82rem; color: var(--fg2); }
+
+footer {
+  background: #0d2240; padding-block: 32px;
+  padding-left: max(24px, env(safe-area-inset-left,0px));
+  padding-right: max(24px, env(safe-area-inset-right,0px));
+  text-align: center;
+}
+footer p { color: rgba(255,255,255,0.35); font-size: 0.8rem; }
+footer a { color: rgba(255,255,255,0.5); text-decoration: none; margin: 0 8px; }
+footer a:hover { color: rgba(255,255,255,0.8); }
+</style>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="/"><span class="nav-logo-text">Mecaly</span></a>
+    <a href="/" class="nav-back" data-es="← Inicio" data-en="← Home">← Inicio</a>
+    <div class="lang-toggle">
+      <button onclick="setLang('es')" class="active" id="btn-es">ES</button>
+      <button onclick="setLang('en')" id="btn-en">EN</button>
+    </div>
+  </div>
+</nav>
+
+<div class="hero-strip">
+  <h1 data-es="Centro de Soporte" data-en="Support Center">Centro de Soporte</h1>
+  <p data-es="Estamos aquí para ayudarte a sacar el máximo de Mecaly." data-en="We're here to help you get the most out of Mecaly.">Estamos aquí para ayudarte a sacar el máximo de Mecaly.</p>
+</div>
+
+<div class="contact-hero">
+  <div class="contact-hero-inner">
+    <div>
+      <h2 data-es="¿No encuentras lo que buscas?" data-en="Can't find what you're looking for?">¿No encuentras lo que buscas?</h2>
+      <p data-es="Escríbenos directamente y te respondemos en menos de 48 horas hábiles." data-en="Write to us directly and we'll respond within 48 business hours.">Escríbenos directamente y te respondemos en menos de 48 horas hábiles.</p>
+      <div class="email-display">support@mecaly.app</div>
+    </div>
+    <a href="mailto:support@mecaly.app" class="contact-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+      <span data-es="Contactar soporte" data-en="Contact support">Contactar soporte</span>
+    </a>
+  </div>
+</div>
+
+<main>
+  <div class="faq-section">
+    <h2 data-es="Preguntas frecuentes" data-en="Frequently Asked Questions">Preguntas frecuentes</h2>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span data-es="¿Qué incluye el plan gratuito?" data-en="What does the free plan include?">¿Qué incluye el plan gratuito?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a">
+        <p data-es="El plan gratuito te permite crear hasta <strong>10 registros por mes</strong> (diagnósticos + órdenes de trabajo combinados). Incluye todas las funciones de la app, incluyendo clientes, vehículos, inventario y cotizaciones en PDF, con anuncios publicitarios." data-en="The free plan lets you create up to <strong>10 records per month</strong> (diagnostics + work orders combined). It includes all app features, including clients, vehicles, inventory and PDF quotes, with ads.">El plan gratuito te permite crear hasta <strong>10 registros por mes</strong> (diagnósticos + órdenes de trabajo combinados). Incluye todas las funciones de la app, incluyendo clientes, vehículos, inventario y cotizaciones en PDF, con anuncios publicitarios.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span data-es="¿Qué incluye Mecaly Pro?" data-en="What does Mecaly Pro include?">¿Qué incluye Mecaly Pro?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a">
+        <p data-es="Con Mecaly Pro obtienes:" data-en="With Mecaly Pro you get:">Con Mecaly Pro obtienes:</p>
+        <ul>
+          <li data-es="Registros ilimitados (diagnósticos, órdenes, cotizaciones)" data-en="Unlimited records (diagnostics, orders, quotes)">Registros ilimitados (diagnósticos, órdenes, cotizaciones)</li>
+          <li data-es="Sin anuncios publicitarios" data-en="No ads">Sin anuncios publicitarios</li>
+          <li data-es="Acceso desde múltiples dispositivos con la misma cuenta" data-en="Access from multiple devices with the same account">Acceso desde múltiples dispositivos con la misma cuenta</li>
+          <li data-es="Todas las funciones actuales y futuras de la app" data-en="All current and future app features">Todas las funciones actuales y futuras de la app</li>
+        </ul>
+        <p data-es="Disponible en plan mensual ($4.99/mes) o anual ($49.99/año, −17% de ahorro)." data-en="Available monthly ($4.99/mo) or annually ($49.99/yr, save 17%).">Disponible en plan mensual ($4.99/mes) o anual ($49.99/año, −17% de ahorro).</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span data-es="¿Cómo cancelo mi suscripción?" data-en="How do I cancel my subscription?">¿Cómo cancelo mi suscripción?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a">
+        <p data-es="Las suscripciones se gestionan directamente desde el App Store de Apple:" data-en="Subscriptions are managed directly from the Apple App Store:">Las suscripciones se gestionan directamente desde el App Store de Apple:</p>
+        <ul>
+          <li data-es="Ve a <strong>Configuración</strong> de tu iPhone" data-en="Go to your iPhone <strong>Settings</strong>">Ve a <strong>Configuración</strong> de tu iPhone</li>
+          <li data-es="Toca tu nombre → <strong>Suscripciones</strong>" data-en="Tap your name → <strong>Subscriptions</strong>">Toca tu nombre → <strong>Suscripciones</strong></li>
+          <li data-es="Selecciona <strong>Mecaly</strong> y elige cancelar" data-en="Select <strong>Mecaly</strong> and choose to cancel">Selecciona <strong>Mecaly</strong> y elige cancelar</li>
+        </ul>
+        <p data-es="Seguirás teniendo acceso Pro hasta el fin del período ya pagado." data-en="You will keep Pro access until the end of the already-paid period.">Seguirás teniendo acceso Pro hasta el fin del período ya pagado.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span data-es="¿Mis datos están seguros?" data-en="Is my data secure?">¿Mis datos están seguros?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a">
+        <p data-es="Sí. Todos tus datos se almacenan en <strong>Google Cloud (Firebase)</strong> con encriptación en tránsito y en reposo. Solo tú tienes acceso a los datos de tu taller — nunca compartimos tu información con terceros." data-en="Yes. All your data is stored on <strong>Google Cloud (Firebase)</strong> with encryption in transit and at rest. Only you have access to your shop's data — we never share your information with third parties.">Sí. Todos tus datos se almacenan en <strong>Google Cloud (Firebase)</strong> con encriptación en tránsito y en reposo. Solo tú tienes acceso a los datos de tu taller — nunca compartimos tu información con terceros.</p>
+        <p data-es="Consulta nuestra <a href='/privacy' style='color:var(--orange)'>Política de Privacidad</a> para más detalles." data-en="See our <a href='/privacy' style='color:var(--orange)'>Privacy Policy</a> for details.">Consulta nuestra <a href="/privacy" style="color:var(--orange)">Política de Privacidad</a> para más detalles.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span data-es="¿Puedo usar Mecaly en varios dispositivos?" data-en="Can I use Mecaly on multiple devices?">¿Puedo usar Mecaly en varios dispositivos?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a">
+        <p data-es="Sí, con la misma cuenta puedes iniciar sesión en hasta 7 dispositivos simultáneamente. Todos los datos se sincronizan en tiempo real. Solo necesitas un único plan Pro." data-en="Yes, with the same account you can sign in on up to 7 devices simultaneously. All data syncs in real time. You only need one Pro plan.">Sí, con la misma cuenta puedes iniciar sesión en hasta 7 dispositivos simultáneamente. Todos los datos se sincronizan en tiempo real. Solo necesitas un único plan Pro.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span data-es="¿La facturación cumple con la DIAN?" data-en="Is billing DIAN-compliant?">¿La facturación cumple con la DIAN?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a">
+        <p data-es="El módulo de facturación de Mecaly es una herramienta de <strong>control interno</strong> para tu taller: registra servicios, genera cotizaciones en PDF y lleva el historial de trabajos. <strong>No es facturación electrónica ante la DIAN</strong> ni reemplaza un software de facturación fiscal. Mecaly te ayuda a organizar la operación de tu taller." data-en="Mecaly's billing module is an <strong>internal control tool</strong> for your shop: it records services, generates PDF quotes, and tracks work history. <strong>It is not DIAN electronic invoicing</strong> and does not replace fiscal billing software. Mecaly helps you organize your shop's operations.">El módulo de facturación de Mecaly es una herramienta de <strong>control interno</strong> para tu taller: registra servicios, genera cotizaciones en PDF y lleva el historial de trabajos. <strong>No es facturación electrónica ante la DIAN</strong> ni reemplaza un software de facturación fiscal. Mecaly te ayuda a organizar la operación de tu taller.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span data-es="¿Cómo funciona el diagnóstico visual del vehículo?" data-en="How does the visual vehicle diagnostic work?">¿Cómo funciona el diagnóstico visual del vehículo?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a">
+        <p data-es="Mecaly incluye un diagrama interactivo del vehículo visto desde arriba. Al crear un diagnóstico, puedes tocar directamente la zona del carro (motor, frenos, suspensión, transmisión, etc.) para registrar exactamente dónde está el problema. Esto hace el diagnóstico más rápido y visual para ti y para el cliente." data-en="Mecaly includes an interactive top-down vehicle diagram. When creating a diagnostic, you can tap directly on the car zone (engine, brakes, suspension, transmission, etc.) to record exactly where the issue is. This makes diagnostics faster and more visual for both you and your client.">Mecaly incluye un diagrama interactivo del vehículo visto desde arriba. Al crear un diagnóstico, puedes tocar directamente la zona del carro (motor, frenos, suspensión, transmisión, etc.) para registrar exactamente dónde está el problema. Esto hace el diagnóstico más rápido y visual para ti y para el cliente.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span data-es="¿Qué hago si olvidé mi contraseña?" data-en="What do I do if I forgot my password?">¿Qué hago si olvidé mi contraseña?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a">
+        <p data-es='En la pantalla de inicio de sesión, toca <strong>"¿Olvidaste tu contraseña?"</strong>. Recibirás un correo de restablecimiento en la dirección con la que te registraste. Si usas Sign in with Apple, gestiona el acceso desde la configuración de tu Apple ID.' data-en='On the login screen, tap <strong>"Forgot your password?"</strong>. You will receive a reset email at the address you registered with. If you use Sign in with Apple, manage access from your Apple ID settings.'>En la pantalla de inicio de sesión, toca <strong>"¿Olvidaste tu contraseña?"</strong>. Recibirás un correo de restablecimiento en la dirección con la que te registraste. Si usas Sign in with Apple, gestiona el acceso desde la configuración de tu Apple ID.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <button class="faq-q" onclick="toggle(this)">
+        <span data-es="¿Cómo elimino mi cuenta y mis datos?" data-en="How do I delete my account and data?">¿Cómo elimino mi cuenta y mis datos?</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="faq-a">
+        <p data-es='Para eliminar tu cuenta y todos tus datos permanentemente, escríbenos a <strong>support@mecaly.app</strong> con el asunto "Eliminar cuenta" desde el correo con el que te registraste. Procesamos la solicitud en máximo 30 días.' data-en='To permanently delete your account and all your data, email us at <strong>support@mecaly.app</strong> with the subject "Delete account" from the email you registered with. We process requests within 30 days.'>Para eliminar tu cuenta y todos tus datos permanentemente, escríbenos a <strong>support@mecaly.app</strong> con el asunto "Eliminar cuenta" desde el correo con el que te registraste. Procesamos la solicitud en máximo 30 días.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="resources">
+    <h2 data-es="Más recursos" data-en="More resources">Más recursos</h2>
+    <div class="resource-grid">
+      <a href="/" class="resource-card">
+        <div class="rc-icon">🏠</div>
+        <div class="rc-title" data-es="Página principal" data-en="Home">Página principal</div>
+        <div class="rc-desc" data-es="Conoce todas las funciones de Mecaly" data-en="Explore all Mecaly features">Conoce todas las funciones de Mecaly</div>
+      </a>
+      <a href="/privacy" class="resource-card">
+        <div class="rc-icon">🔒</div>
+        <div class="rc-title" data-es="Privacidad" data-en="Privacy">Privacidad</div>
+        <div class="rc-desc" data-es="Cómo protegemos tus datos" data-en="How we protect your data">Cómo protegemos tus datos</div>
+      </a>
+      <a href="mailto:support@mecaly.app" class="resource-card">
+        <div class="rc-icon">📧</div>
+        <div class="rc-title" data-es="Email directo" data-en="Direct email">Email directo</div>
+        <div class="rc-desc">support@mecaly.app</div>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>
+    <a href="/" data-es="Inicio" data-en="Home">Inicio</a>
+    <a href="/privacy" data-es="Privacidad" data-en="Privacy">Privacidad</a>
+    <a href="/support" data-es="Soporte" data-en="Support">Soporte</a>
+  </p>
+  <p style="margin-top:12px;">© 2024 Menthor Labs · Mecaly</p>
+</footer>
+
+<script>
+let lang = localStorage.getItem('mecaly-lang') || 'es';
+function setLang(l) {
+  lang = l;
+  try { localStorage.setItem('mecaly-lang', l); } catch(e) {}
+  document.querySelectorAll('[data-es]').forEach(el => {
+    el.innerHTML = el.getAttribute('data-' + l);
+  });
+  document.getElementById('btn-es').classList.toggle('active', l === 'es');
+  document.getElementById('btn-en').classList.toggle('active', l === 'en');
+}
+setLang(lang);
+
+function toggle(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+</script>

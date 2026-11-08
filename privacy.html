@@ -1,0 +1,221 @@
+<title>Privacy Policy — Mecaly</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@700;800&display=swap">
+<style>
+:root {
+  --bg: #ffffff; --bg2: #f8f8f6; --fg: #1a1a1a; --fg2: #4a4a4a; --fg3: #8a8a8a;
+  --border: #e5e5e0; --blue: #1E3A5F; --blue-mid: #2A5080; --orange: #E8722A;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111; --bg2: #1a1a1a; --fg: #f0f0ee; --fg2: #aaa; --fg3: #666; --border: #2a2a2a; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] { --bg: #111; --bg2: #1a1a1a; --fg: #f0f0ee; --fg2: #aaa; --fg3: #666; --border: #2a2a2a; color-scheme: dark; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.7; }
+
+nav {
+  position: sticky; top: env(safe-area-inset-top,0px); z-index: 100;
+  background: rgba(30,58,95,0.97); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding-block: 14px;
+  padding-left: max(24px, env(safe-area-inset-left,0px));
+  padding-right: max(24px, env(safe-area-inset-right,0px));
+}
+.nav-inner { max-width: 860px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo-text { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.15rem; font-weight: 700; color: #fff; letter-spacing: -0.02em; }
+.nav-back { color: rgba(255,255,255,0.7); font-size: 0.85rem; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+.nav-back:hover { color: #fff; }
+.lang-toggle { display: flex; background: rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; }
+.lang-toggle button { background: none; border: none; color: rgba(255,255,255,0.6); font-size: 0.8rem; font-weight: 600; padding: 6px 12px; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+.lang-toggle button.active { background: rgba(255,255,255,0.2); color: #fff; }
+
+.hero-strip {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%);
+  padding-block: 56px 48px;
+  padding-left: max(24px, env(safe-area-inset-left,0px));
+  padding-right: max(24px, env(safe-area-inset-right,0px));
+  text-align: center;
+}
+.hero-strip h1 { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(1.8rem,4vw,2.6rem); font-weight: 800; color: #fff; letter-spacing: -0.03em; margin-bottom: 10px; }
+.hero-strip p { color: rgba(255,255,255,0.65); font-size: 0.95rem; }
+
+main {
+  max-width: 760px; margin: 0 auto;
+  padding-block: 56px 80px;
+  padding-left: max(24px, env(safe-area-inset-left,0px));
+  padding-right: max(24px, env(safe-area-inset-right,0px));
+}
+
+.section { margin-bottom: 48px; }
+.section h2 {
+  font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.25rem; font-weight: 800;
+  color: var(--fg); letter-spacing: -0.02em; margin-bottom: 14px;
+  padding-bottom: 10px; border-bottom: 2px solid var(--border);
+}
+.section p { font-size: 0.95rem; color: var(--fg2); margin-bottom: 12px; }
+.section ul { list-style: none; display: flex; flex-direction: column; gap: 8px; padding-left: 0; margin-bottom: 12px; }
+.section ul li { font-size: 0.95rem; color: var(--fg2); padding-left: 20px; position: relative; }
+.section ul li::before { content: '•'; color: var(--orange); position: absolute; left: 0; font-weight: 700; }
+
+.info-card {
+  background: var(--bg2); border: 1px solid var(--border); border-radius: 12px;
+  padding: 20px 24px; margin-bottom: 16px;
+}
+.info-card-title { font-weight: 700; font-size: 0.9rem; color: var(--fg); margin-bottom: 6px; }
+.info-card p { font-size: 0.88rem; color: var(--fg2); margin-bottom: 0; }
+.info-card a { color: var(--orange); text-decoration: none; }
+.info-card a:hover { text-decoration: underline; }
+
+.contact-box {
+  background: linear-gradient(135deg, var(--blue), var(--blue-mid));
+  border-radius: 16px; padding: 32px; text-align: center; margin-top: 48px;
+}
+.contact-box h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.3rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
+.contact-box p { color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 20px; }
+.contact-box a { display: inline-block; background: var(--orange); color: #fff; padding: 12px 28px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: all 0.2s; }
+.contact-box a:hover { background: #F4915A; transform: translateY(-1px); }
+
+footer {
+  background: #0d2240; padding-block: 32px;
+  padding-left: max(24px, env(safe-area-inset-left,0px));
+  padding-right: max(24px, env(safe-area-inset-right,0px));
+  text-align: center;
+}
+footer p { color: rgba(255,255,255,0.35); font-size: 0.8rem; }
+footer a { color: rgba(255,255,255,0.5); text-decoration: none; margin: 0 8px; }
+footer a:hover { color: rgba(255,255,255,0.8); }
+</style>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="/">
+      <span class="nav-logo-text">Mecaly</span>
+    </a>
+    <a href="/" class="nav-back" data-es="← Inicio" data-en="← Home">← Inicio</a>
+    <div class="lang-toggle">
+      <button onclick="setLang('es')" class="active" id="btn-es">ES</button>
+      <button onclick="setLang('en')" id="btn-en">EN</button>
+    </div>
+  </div>
+</nav>
+
+<div class="hero-strip">
+  <h1 data-es="Política de Privacidad" data-en="Privacy Policy">Política de Privacidad</h1>
+  <p data-es="Última actualización: noviembre 2024 · Menthor Labs" data-en="Last updated: November 2024 · Menthor Labs">Última actualización: noviembre 2024 · Menthor Labs</p>
+</div>
+
+<main>
+  <div class="section">
+    <h2 data-es="1. Información general" data-en="1. Overview">1. Información general</h2>
+    <p data-es="Mecaly es una aplicación para gestión de talleres de automóviles desarrollada por <strong>Menthor Labs</strong>. Esta política describe qué información recopilamos, cómo la usamos y cómo la protegemos." data-en="Mecaly is a car repair shop management app developed by <strong>Menthor Labs</strong>. This policy describes what information we collect, how we use it, and how we protect it.">Mecaly es una aplicación para gestión de talleres de automóviles desarrollada por <strong>Menthor Labs</strong>. Esta política describe qué información recopilamos, cómo la usamos y cómo la protegemos.</p>
+    <p data-es="Al usar Mecaly, aceptas las prácticas descritas en esta política. Si tienes preguntas, escríbenos a <strong>support@mecaly.app</strong>." data-en="By using Mecaly, you agree to the practices described in this policy. If you have questions, contact us at <strong>support@mecaly.app</strong>.">Al usar Mecaly, aceptas las prácticas descritas en esta política. Si tienes preguntas, escríbenos a <strong>support@mecaly.app</strong>.</p>
+  </div>
+
+  <div class="section">
+    <h2 data-es="2. Información que recopilamos" data-en="2. Information We Collect">2. Información que recopilamos</h2>
+    <p><strong data-es="Información de cuenta:" data-en="Account information:">Información de cuenta:</strong></p>
+    <ul>
+      <li data-es="Correo electrónico (al registrarte con email/contraseña o Sign in with Apple)" data-en="Email address (when signing up with email/password or Sign in with Apple)">Correo electrónico (al registrarte con email/contraseña o Sign in with Apple)</li>
+      <li data-es="Nombre del taller y datos de perfil que ingresas voluntariamente" data-en="Shop name and profile data you enter voluntarily">Nombre del taller y datos de perfil que ingresas voluntariamente</li>
+      <li data-es="Un identificador único de usuario (UID) generado por Firebase Auth" data-en="A unique user identifier (UID) generated by Firebase Auth">Un identificador único de usuario (UID) generado por Firebase Auth</li>
+    </ul>
+    <p><strong data-es="Datos del negocio (ingresados por ti):" data-en="Business data (entered by you):">Datos del negocio (ingresados por ti):</strong></p>
+    <ul>
+      <li data-es="Clientes: nombre, teléfono, vehículos" data-en="Clients: name, phone, vehicles">Clientes: nombre, teléfono, vehículos</li>
+      <li data-es="Órdenes de trabajo, diagnósticos, cotizaciones" data-en="Work orders, diagnostics, quotes">Órdenes de trabajo, diagnósticos, cotizaciones</li>
+      <li data-es="Inventario de repuestos y proveedores" data-en="Parts inventory and suppliers">Inventario de repuestos y proveedores</li>
+      <li data-es="Recordatorios y agenda" data-en="Reminders and schedule">Recordatorios y agenda</li>
+    </ul>
+    <p data-es="Estos datos se almacenan en <strong>Cloud Firestore (Google Firebase)</strong> asociados a tu cuenta y solo son accesibles por ti." data-en="This data is stored in <strong>Cloud Firestore (Google Firebase)</strong> linked to your account and accessible only by you.">Estos datos se almacenan en <strong>Cloud Firestore (Google Firebase)</strong> asociados a tu cuenta y solo son accesibles por ti.</p>
+  </div>
+
+  <div class="section">
+    <h2 data-es="3. Servicios de terceros" data-en="3. Third-Party Services">3. Servicios de terceros</h2>
+
+    <div class="info-card">
+      <div class="info-card-title">🔐 Firebase (Google)</div>
+      <p data-es="Usamos Firebase Auth para autenticación y Cloud Firestore para almacenar tus datos. Google puede procesar datos según su <a href='https://policies.google.com/privacy' target='_blank'>política de privacidad</a>." data-en="We use Firebase Auth for authentication and Cloud Firestore to store your data. Google may process data per its <a href='https://policies.google.com/privacy' target='_blank'>privacy policy</a>.">Usamos Firebase Auth para autenticación y Cloud Firestore para almacenar tus datos. Google puede procesar datos según su <a href="https://policies.google.com/privacy" target="_blank">política de privacidad</a>.</p>
+    </div>
+
+    <div class="info-card">
+      <div class="info-card-title">💳 RevenueCat</div>
+      <p data-es="Gestiona las suscripciones Pro. RevenueCat recibe tu ID de usuario anónimo y el estado de la suscripción para validar el acceso. <a href='https://www.revenuecat.com/privacy' target='_blank'>Política de privacidad de RevenueCat</a>." data-en="Manages Pro subscriptions. RevenueCat receives your anonymous user ID and subscription status to validate access. <a href='https://www.revenuecat.com/privacy' target='_blank'>RevenueCat privacy policy</a>.">Gestiona las suscripciones Pro. RevenueCat recibe tu ID de usuario anónimo y el estado de la suscripción para validar el acceso. <a href="https://www.revenuecat.com/privacy" target="_blank">Política de privacidad de RevenueCat</a>.</p>
+    </div>
+
+    <div class="info-card">
+      <div class="info-card-title">📢 Google AdMob</div>
+      <p data-es="Los usuarios del plan gratuito ven anuncios proporcionados por Google AdMob. AdMob puede usar identificadores del dispositivo para mostrar anuncios relevantes. Puedes desactivar los anuncios personalizados en los ajustes de tu dispositivo. <a href='https://policies.google.com/privacy' target='_blank'>Política de Google</a>." data-en="Free plan users see ads provided by Google AdMob. AdMob may use device identifiers to show relevant ads. You can opt out of personalized ads in your device settings. <a href='https://policies.google.com/privacy' target='_blank'>Google policy</a>.">Los usuarios del plan gratuito ven anuncios proporcionados por Google AdMob. AdMob puede usar identificadores del dispositivo para mostrar anuncios relevantes. Puedes desactivar los anuncios personalizados en los ajustes de tu dispositivo. <a href="https://policies.google.com/privacy" target="_blank">Política de Google</a>.</p>
+    </div>
+
+    <div class="info-card">
+      <div class="info-card-title">🍎 Sign in with Apple</div>
+      <p data-es="Si te registras con Apple, usamos el correo real o el correo de retransmisión que Apple proporciona. No compartimos este dato con terceros." data-en="If you sign up with Apple, we use the real or relay email that Apple provides. We do not share this with third parties.">Si te registras con Apple, usamos el correo real o el correo de retransmisión que Apple proporciona. No compartimos este dato con terceros.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2 data-es="4. Cómo usamos tu información" data-en="4. How We Use Your Information">4. Cómo usamos tu información</h2>
+    <ul>
+      <li data-es="Autenticar tu acceso a la app" data-en="Authenticate your access to the app">Autenticar tu acceso a la app</li>
+      <li data-es="Sincronizar tus datos entre dispositivos" data-en="Sync your data across devices">Sincronizar tus datos entre dispositivos</li>
+      <li data-es="Verificar el estado de tu suscripción Pro" data-en="Verify your Pro subscription status">Verificar el estado de tu suscripción Pro</li>
+      <li data-es="Mostrar anuncios a usuarios del plan gratuito" data-en="Show ads to free plan users">Mostrar anuncios a usuarios del plan gratuito</li>
+      <li data-es="Enviarte notificaciones locales de recordatorios (solo si las activas)" data-en="Send local reminder notifications (only if you enable them)">Enviarte notificaciones locales de recordatorios (solo si las activas)</li>
+    </ul>
+    <p data-es="<strong>No vendemos, alquilamos ni compartimos tus datos con terceros</strong> fuera de los servicios descritos anteriormente." data-en="<strong>We do not sell, rent, or share your data with third parties</strong> outside the services described above."><strong>No vendemos, alquilamos ni compartimos tus datos con terceros</strong> fuera de los servicios descritos anteriormente.</p>
+  </div>
+
+  <div class="section">
+    <h2 data-es="5. Almacenamiento y seguridad" data-en="5. Storage and Security">5. Almacenamiento y seguridad</h2>
+    <p data-es="Tus datos se almacenan en los servidores de Google Firebase con encriptación en tránsito (TLS) y en reposo. El acceso está protegido por reglas de seguridad de Firestore que garantizan que solo tú puedes leer y modificar tus datos." data-en="Your data is stored on Google Firebase servers with encryption in transit (TLS) and at rest. Access is protected by Firestore security rules that ensure only you can read and modify your data.">Tus datos se almacenan en los servidores de Google Firebase con encriptación en tránsito (TLS) y en reposo. El acceso está protegido por reglas de seguridad de Firestore que garantizan que solo tú puedes leer y modificar tus datos.</p>
+    <p data-es="Mecaly funciona en modo <strong>solo en línea</strong> — no guarda datos localmente en caché para proteger la privacidad de la información del taller." data-en="Mecaly operates in <strong>online-only mode</strong> — it does not cache data locally, protecting your shop's private information.">Mecaly funciona en modo <strong>solo en línea</strong> — no guarda datos localmente en caché para proteger la privacidad de la información del taller.</p>
+  </div>
+
+  <div class="section">
+    <h2 data-es="6. Retención y eliminación de datos" data-en="6. Data Retention and Deletion">6. Retención y eliminación de datos</h2>
+    <p data-es="Tus datos se conservan mientras tu cuenta esté activa. Si deseas eliminar tu cuenta y todos tus datos, contáctanos en <strong>support@mecaly.app</strong> y procesaremos la solicitud en un máximo de 30 días." data-en="Your data is retained while your account is active. To delete your account and all your data, contact us at <strong>support@mecaly.app</strong> and we will process your request within 30 days.">Tus datos se conservan mientras tu cuenta esté activa. Si deseas eliminar tu cuenta y todos tus datos, contáctanos en <strong>support@mecaly.app</strong> y procesaremos la solicitud en un máximo de 30 días.</p>
+  </div>
+
+  <div class="section">
+    <h2 data-es="7. Privacidad de menores" data-en="7. Children's Privacy">7. Privacidad de menores</h2>
+    <p data-es="Mecaly no está dirigida a menores de 13 años y no recopilamos intencionalmente información de menores." data-en="Mecaly is not directed at children under 13, and we do not knowingly collect information from children.">Mecaly no está dirigida a menores de 13 años y no recopilamos intencionalmente información de menores.</p>
+  </div>
+
+  <div class="section">
+    <h2 data-es="8. Cambios a esta política" data-en="8. Changes to This Policy">8. Cambios a esta política</h2>
+    <p data-es='Podemos actualizar esta política ocasionalmente. Te notificaremos dentro de la app si hay cambios significativos. La fecha de "Última actualización" al inicio indica cuándo fue la revisión más reciente.' data-en='We may update this policy occasionally. We will notify you in the app if there are significant changes. The "Last updated" date at the top indicates when the most recent revision was made.'>Podemos actualizar esta política ocasionalmente. Te notificaremos dentro de la app si hay cambios significativos. La fecha de "Última actualización" al inicio indica cuándo fue la revisión más reciente.</p>
+  </div>
+
+  <div class="contact-box">
+    <h3 data-es="¿Tienes preguntas?" data-en="Have questions?">¿Tienes preguntas?</h3>
+    <p data-es="Escríbenos y te respondemos en menos de 48 horas." data-en="Write to us and we'll respond within 48 hours.">Escríbenos y te respondemos en menos de 48 horas.</p>
+    <a href="mailto:support@mecaly.app">support@mecaly.app</a>
+  </div>
+</main>
+
+<footer>
+  <p>
+    <a href="/" data-es="Inicio" data-en="Home">Inicio</a>
+    <a href="/privacy" data-es="Privacidad" data-en="Privacy">Privacidad</a>
+    <a href="/support" data-es="Soporte" data-en="Support">Soporte</a>
+  </p>
+  <p style="margin-top:12px;">© 2024 Menthor Labs · Mecaly</p>
+</footer>
+
+<script>
+let lang = localStorage.getItem('mecaly-lang') || 'es';
+function setLang(l) {
+  lang = l;
+  try { localStorage.setItem('mecaly-lang', l); } catch(e) {}
+  document.querySelectorAll('[data-es]').forEach(el => {
+    el.innerHTML = el.getAttribute('data-' + l);
+  });
+  document.getElementById('btn-es').classList.toggle('active', l === 'es');
+  document.getElementById('btn-en').classList.toggle('active', l === 'en');
+}
+setLang(lang);
+</script>
