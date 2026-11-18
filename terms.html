@@ -1,0 +1,204 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Terms of Service — Mecaly</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@700;800&display=swap">
+<style>
+:root {
+  --bg: #ffffff; --bg2: #f8f8f6; --fg: #1a1a1a; --fg2: #4a4a4a; --fg3: #8a8a8a;
+  --border: #e5e5e0; --blue: #1E3A5F; --blue-mid: #2A5080; --orange: #E8722A;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111; --bg2: #1a1a1a; --fg: #f0f0ee; --fg2: #aaa; --fg3: #666; --border: #2a2a2a; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] { --bg: #111; --bg2: #1a1a1a; --fg: #f0f0ee; --fg2: #aaa; --fg3: #666; --border: #2a2a2a; color-scheme: dark; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--fg); line-height: 1.7; }
+
+nav {
+  position: sticky; top: env(safe-area-inset-top,0px); z-index: 100;
+  background: rgba(30,58,95,0.97); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding-block: 14px;
+  padding-left: max(24px, env(safe-area-inset-left,0px));
+  padding-right: max(24px, env(safe-area-inset-right,0px));
+}
+.nav-inner { max-width: 860px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo-text { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.15rem; font-weight: 700; color: #fff; letter-spacing: -0.02em; }
+.nav-back { color: rgba(255,255,255,0.7); font-size: 0.85rem; text-decoration: none; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+.nav-back:hover { color: #fff; }
+.lang-toggle { display: flex; background: rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; }
+.lang-toggle button { background: none; border: none; color: rgba(255,255,255,0.6); font-size: 0.8rem; font-weight: 600; padding: 6px 12px; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
+.lang-toggle button.active { background: rgba(255,255,255,0.2); color: #fff; }
+
+.hero-strip {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%);
+  padding-block: 56px 48px;
+  padding-left: max(24px, env(safe-area-inset-left,0px));
+  padding-right: max(24px, env(safe-area-inset-right,0px));
+  text-align: center;
+}
+.hero-strip h1 { font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(1.8rem,4vw,2.6rem); font-weight: 800; color: #fff; letter-spacing: -0.03em; margin-bottom: 10px; }
+.hero-strip p { color: rgba(255,255,255,0.65); font-size: 0.95rem; }
+
+main {
+  max-width: 760px; margin: 0 auto;
+  padding-block: 56px 80px;
+  padding-left: max(24px, env(safe-area-inset-left,0px));
+  padding-right: max(24px, env(safe-area-inset-right,0px));
+}
+
+.section { margin-bottom: 48px; }
+.section h2 {
+  font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.25rem; font-weight: 800;
+  color: var(--fg); letter-spacing: -0.02em; margin-bottom: 14px;
+  padding-bottom: 10px; border-bottom: 2px solid var(--border);
+}
+.section p { font-size: 0.95rem; color: var(--fg2); margin-bottom: 12px; }
+.section ul { list-style: none; display: flex; flex-direction: column; gap: 8px; padding-left: 0; margin-bottom: 12px; }
+.section ul li { font-size: 0.95rem; color: var(--fg2); padding-left: 20px; position: relative; }
+.section ul li::before { content: '•'; color: var(--orange); position: absolute; left: 0; font-weight: 700; }
+
+.contact-box {
+  background: linear-gradient(135deg, var(--blue), var(--blue-mid));
+  border-radius: 16px; padding: 32px; text-align: center; margin-top: 48px;
+}
+.contact-box h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 1.3rem; font-weight: 800; color: #fff; margin-bottom: 10px; }
+.contact-box p { color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 20px; }
+.contact-box a { display: inline-block; background: var(--orange); color: #fff; padding: 12px 28px; border-radius: 8px; font-weight: 700; font-size: 0.95rem; text-decoration: none; transition: all 0.2s; }
+.contact-box a:hover { background: #F4915A; transform: translateY(-1px); }
+
+footer {
+  background: #0d2240; padding-block: 32px;
+  padding-left: max(24px, env(safe-area-inset-left,0px));
+  padding-right: max(24px, env(safe-area-inset-right,0px));
+  text-align: center;
+}
+footer p { color: rgba(255,255,255,0.35); font-size: 0.8rem; }
+footer a { color: rgba(255,255,255,0.5); text-decoration: none; margin: 0 8px; }
+footer a:hover { color: rgba(255,255,255,0.8); }
+</style>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="/">
+      <span class="nav-logo-text">Mecaly</span>
+    </a>
+    <a href="/" class="nav-back" data-es="&larr; Inicio" data-en="&larr; Home">&larr; Inicio</a>
+    <div class="lang-toggle">
+      <button onclick="setLang('es')" class="active" id="btn-es">ES</button>
+      <button onclick="setLang('en')" id="btn-en">EN</button>
+    </div>
+  </div>
+</nav>
+
+<div class="hero-strip">
+  <h1 data-es="Términos del Servicio" data-en="Terms of Service">Términos del Servicio</h1>
+  <p data-es="Última actualización: noviembre 2026 · Menthor Labs" data-en="Last updated: November 2026 · Menthor Labs">Última actualización: noviembre 2026 · Menthor Labs</p>
+</div>
+
+<main>
+  <div class="section">
+    <h2 data-es="1. Aceptación de los términos" data-en="1. Acceptance of Terms">1. Aceptación de los términos</h2>
+    <p data-es="Al descargar, instalar o usar Mecaly, aceptas estos Términos del Servicio. Si no estás de acuerdo, no uses la aplicación." data-en="By downloading, installing, or using Mecaly, you agree to these Terms of Service. If you do not agree, do not use the app.">Al descargar, instalar o usar Mecaly, aceptas estos Términos del Servicio. Si no estás de acuerdo, no uses la aplicación.</p>
+    <p data-es="Mecaly es desarrollada y operada por <strong>Menthor Labs</strong>." data-en="Mecaly is developed and operated by <strong>Menthor Labs</strong>.">Mecaly es desarrollada y operada por <strong>Menthor Labs</strong>.</p>
+  </div>
+
+  <div class="section">
+    <h2 data-es="2. Descripción del servicio" data-en="2. Description of Service">2. Descripción del servicio</h2>
+    <p data-es="Mecaly es una aplicación de gestión para talleres de automóviles que permite administrar diagnósticos, órdenes de trabajo, cotizaciones, citas, inventario, clientes y reportes de ingresos." data-en="Mecaly is a management app for auto repair shops that allows you to manage diagnostics, work orders, quotes, appointments, inventory, clients, and revenue reports.">Mecaly es una aplicación de gestión para talleres de automóviles que permite administrar diagnósticos, órdenes de trabajo, cotizaciones, citas, inventario, clientes y reportes de ingresos.</p>
+    <p data-es="La aplicación ofrece un plan gratuito con funciones limitadas y un plan Pro mediante suscripción mensual o anual." data-en="The app offers a free plan with limited features and a Pro plan via monthly or annual subscription.">La aplicación ofrece un plan gratuito con funciones limitadas y un plan Pro mediante suscripción mensual o anual.</p>
+  </div>
+
+  <div class="section">
+    <h2 data-es="3. Cuentas de usuario" data-en="3. User Accounts">3. Cuentas de usuario</h2>
+    <p data-es="Para usar Mecaly debes crear una cuenta con correo electrónico y contraseña, o mediante Sign in with Apple. Eres responsable de mantener la confidencialidad de tus credenciales." data-en="To use Mecaly, you must create an account with email and password, or via Sign in with Apple. You are responsible for maintaining the confidentiality of your credentials.">Para usar Mecaly debes crear una cuenta con correo electrónico y contraseña, o mediante Sign in with Apple. Eres responsable de mantener la confidencialidad de tus credenciales.</p>
+    <p data-es="Puedes eliminar tu cuenta en cualquier momento desde Configuración dentro de la app o contactándonos en <strong>support@mecaly.app</strong>." data-en="You can delete your account at any time from Settings within the app or by contacting us at <strong>support@mecaly.app</strong>.">Puedes eliminar tu cuenta en cualquier momento desde Configuración dentro de la app o contactándonos en <strong>support@mecaly.app</strong>.</p>
+  </div>
+
+  <div class="section">
+    <h2 data-es="4. Suscripciones y pagos" data-en="4. Subscriptions and Payments">4. Suscripciones y pagos</h2>
+    <p data-es="Las suscripciones Pro se gestionan a través de Apple App Store o Google Play Store. Los pagos se procesan directamente por Apple o Google según la plataforma." data-en="Pro subscriptions are managed through Apple App Store or Google Play Store. Payments are processed directly by Apple or Google depending on the platform.">Las suscripciones Pro se gestionan a través de Apple App Store o Google Play Store. Los pagos se procesan directamente por Apple o Google según la plataforma.</p>
+    <ul>
+      <li data-es="Las suscripciones se renuevan automáticamente a menos que se cancelen al menos 24 horas antes del final del periodo actual" data-en="Subscriptions auto-renew unless canceled at least 24 hours before the end of the current period">Las suscripciones se renuevan automáticamente a menos que se cancelen al menos 24 horas antes del final del periodo actual</li>
+      <li data-es="Puedes cancelar tu suscripción desde los ajustes de tu cuenta de Apple o Google" data-en="You can cancel your subscription from your Apple or Google account settings">Puedes cancelar tu suscripción desde los ajustes de tu cuenta de Apple o Google</li>
+      <li data-es="No se ofrecen reembolsos directos; los reembolsos se gestionan según las políticas de Apple o Google" data-en="No direct refunds are offered; refunds are handled per Apple or Google policies">No se ofrecen reembolsos directos; los reembolsos se gestionan según las políticas de Apple o Google</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 data-es="5. Uso aceptable" data-en="5. Acceptable Use">5. Uso aceptable</h2>
+    <p data-es="Te comprometes a usar Mecaly únicamente para fines legales y relacionados con la gestión de tu taller. No debes:" data-en="You agree to use Mecaly only for lawful purposes related to managing your shop. You must not:">Te comprometes a usar Mecaly únicamente para fines legales y relacionados con la gestión de tu taller. No debes:</p>
+    <ul>
+      <li data-es="Intentar acceder a datos de otros usuarios" data-en="Attempt to access other users' data">Intentar acceder a datos de otros usuarios</li>
+      <li data-es="Usar la app para actividades ilegales o fraudulentas" data-en="Use the app for illegal or fraudulent activities">Usar la app para actividades ilegales o fraudulentas</li>
+      <li data-es="Intentar modificar, descompilar o realizar ingeniería inversa de la aplicación" data-en="Attempt to modify, decompile, or reverse-engineer the app">Intentar modificar, descompilar o realizar ingeniería inversa de la aplicación</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2 data-es="6. Datos y privacidad" data-en="6. Data and Privacy">6. Datos y privacidad</h2>
+    <p data-es="Tu uso de Mecaly también se rige por nuestra <a href='/privacy' style='color: var(--orange)'>Política de Privacidad</a>. Los datos de tu taller se almacenan en servidores de Google Firebase con encriptación en tránsito y en reposo." data-en="Your use of Mecaly is also governed by our <a href='/privacy' style='color: var(--orange)'>Privacy Policy</a>. Your shop data is stored on Google Firebase servers with encryption in transit and at rest.">Tu uso de Mecaly también se rige por nuestra <a href="/privacy" style="color: var(--orange)">Política de Privacidad</a>. Los datos de tu taller se almacenan en servidores de Google Firebase con encriptación en tránsito y en reposo.</p>
+    <p data-es="Eres responsable de los datos que ingresas en la aplicación, incluyendo la información de tus clientes." data-en="You are responsible for the data you enter into the app, including your clients' information.">Eres responsable de los datos que ingresas en la aplicación, incluyendo la información de tus clientes.</p>
+  </div>
+
+  <div class="section">
+    <h2 data-es="7. Publicidad" data-en="7. Advertising">7. Publicidad</h2>
+    <p data-es="Los usuarios del plan gratuito verán anuncios proporcionados por Google AdMob. Los usuarios Pro no ven anuncios." data-en="Free plan users will see ads provided by Google AdMob. Pro users do not see ads.">Los usuarios del plan gratuito verán anuncios proporcionados por Google AdMob. Los usuarios Pro no ven anuncios.</p>
+  </div>
+
+  <div class="section">
+    <h2 data-es="8. Disponibilidad del servicio" data-en="8. Service Availability">8. Disponibilidad del servicio</h2>
+    <p data-es="Mecaly requiere conexión a internet para funcionar. No garantizamos disponibilidad ininterrumpida del servicio. Podemos realizar mantenimiento o actualizaciones que requieran tiempo de inactividad temporal." data-en="Mecaly requires an internet connection to function. We do not guarantee uninterrupted service availability. We may perform maintenance or updates that require temporary downtime.">Mecaly requiere conexión a internet para funcionar. No garantizamos disponibilidad ininterrumpida del servicio. Podemos realizar mantenimiento o actualizaciones que requieran tiempo de inactividad temporal.</p>
+  </div>
+
+  <div class="section">
+    <h2 data-es="9. Limitación de responsabilidad" data-en="9. Limitation of Liability">9. Limitación de responsabilidad</h2>
+    <p data-es="Mecaly se proporciona &quot;tal cual&quot;. Menthor Labs no se hace responsable por pérdidas de datos, interrupciones del servicio o daños derivados del uso de la aplicación, en la máxima medida permitida por la ley." data-en="Mecaly is provided &quot;as is.&quot; Menthor Labs is not liable for data loss, service interruptions, or damages arising from the use of the app, to the maximum extent permitted by law.">Mecaly se proporciona &quot;tal cual&quot;. Menthor Labs no se hace responsable por pérdidas de datos, interrupciones del servicio o daños derivados del uso de la aplicación, en la máxima medida permitida por la ley.</p>
+  </div>
+
+  <div class="section">
+    <h2 data-es="10. Cambios a estos términos" data-en="10. Changes to These Terms">10. Cambios a estos términos</h2>
+    <p data-es="Podemos actualizar estos términos ocasionalmente. Te notificaremos dentro de la app sobre cambios significativos. El uso continuado de Mecaly después de los cambios constituye tu aceptación de los nuevos términos." data-en="We may update these terms occasionally. We will notify you in the app about significant changes. Continued use of Mecaly after the changes constitutes your acceptance of the new terms.">Podemos actualizar estos términos ocasionalmente. Te notificaremos dentro de la app sobre cambios significativos. El uso continuado de Mecaly después de los cambios constituye tu aceptación de los nuevos términos.</p>
+  </div>
+
+  <div class="section">
+    <h2 data-es="11. Contacto" data-en="11. Contact">11. Contacto</h2>
+    <p data-es="Si tienes preguntas sobre estos términos, escríbenos a <strong>support@mecaly.app</strong>." data-en="If you have questions about these terms, write to us at <strong>support@mecaly.app</strong>.">Si tienes preguntas sobre estos términos, escríbenos a <strong>support@mecaly.app</strong>.</p>
+  </div>
+
+  <div class="contact-box">
+    <h3 data-es="¿Tienes preguntas?" data-en="Have questions?">¿Tienes preguntas?</h3>
+    <p data-es="Escríbenos y te respondemos en menos de 48 horas." data-en="Write to us and we'll respond within 48 hours.">Escríbenos y te respondemos en menos de 48 horas.</p>
+    <a href="mailto:support@mecaly.app">support@mecaly.app</a>
+  </div>
+</main>
+
+<footer>
+  <p>
+    <a href="/" data-es="Inicio" data-en="Home">Inicio</a>
+    <a href="/privacy" data-es="Privacidad" data-en="Privacy">Privacidad</a>
+    <a href="/terms" data-es="Términos" data-en="Terms">Términos</a>
+    <a href="/support" data-es="Soporte" data-en="Support">Soporte</a>
+    <a href="/delete-account" data-es="Eliminar cuenta" data-en="Delete Account">Eliminar cuenta</a>
+  </p>
+  <p style="margin-top:12px;">&copy; 2026 Menthor Labs &middot; Mecaly</p>
+</footer>
+
+<script>
+let lang = localStorage.getItem('mecaly-lang') || 'es';
+function setLang(l) {
+  lang = l;
+  try { localStorage.setItem('mecaly-lang', l); } catch(e) {}
+  document.querySelectorAll('[data-es]').forEach(el => {
+    el.innerHTML = el.getAttribute('data-' + l);
+  });
+  document.getElementById('btn-es').classList.toggle('active', l === 'es');
+  document.getElementById('btn-en').classList.toggle('active', l === 'en');
+}
+setLang(lang);
+</script>
