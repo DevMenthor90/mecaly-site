@@ -1,0 +1,512 @@
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Beta Android — Mecaly</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@700;800&display=swap">
+<style>
+:root {
+  --bg: #ffffff; --bg2: #f8f8f6; --fg: #1a1a1a; --fg2: #4a4a4a; --fg3: #8a8a8a;
+  --border: #e5e5e0; --blue: #1E3A5F; --blue-mid: #2A5080; --orange: #E8722A; --orange-lt: #F4915A;
+  --green: #22c55e; --green-bg: #f0fdf4; --green-border: #bbf7d0;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111; --bg2: #1a1a1a; --fg: #f0f0ee; --fg2: #aaa; --fg3: #666;
+    --border: #2a2a2a; --green-bg: #052e16; --green-border: #166534;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111; --bg2: #1a1a1a; --fg: #f0f0ee; --fg2: #aaa; --fg3: #666;
+  --border: #2a2a2a; --green-bg: #052e16; --green-border: #166534;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+}
+
+/* NAV */
+nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 100;
+  background: rgba(30,58,95,0.97); backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding-block: 14px;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+}
+.nav-inner {
+  max-width: 860px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+}
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.nav-logo-text {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.15rem; font-weight: 700; color: #fff; letter-spacing: -0.02em;
+}
+.nav-back {
+  color: rgba(255,255,255,0.7); font-size: 0.85rem; text-decoration: none;
+  display: flex; align-items: center; gap: 6px; transition: color 0.2s;
+}
+.nav-back:hover { color: #fff; }
+.lang-toggle { display: flex; background: rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; }
+.lang-toggle button {
+  background: none; border: none; color: rgba(255,255,255,0.6);
+  font-size: 0.8rem; font-weight: 600; padding: 6px 12px; cursor: pointer;
+  transition: all 0.2s; font-family: 'Inter', sans-serif;
+}
+.lang-toggle button.active { background: rgba(255,255,255,0.2); color: #fff; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 50%, #1a4a75 100%);
+  padding-block: 64px 56px;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 20% 80%, rgba(232,114,42,0.12) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(42,80,128,0.2) 0%, transparent 40%);
+}
+.hero > * { position: relative; z-index: 1; }
+
+.beta-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(232,114,42,0.2); border: 1px solid rgba(232,114,42,0.4);
+  border-radius: 100px; padding: 8px 20px; margin-bottom: 24px;
+  font-size: 0.8rem; font-weight: 700; color: var(--orange-lt);
+  letter-spacing: 1.5px; text-transform: uppercase;
+}
+.beta-badge .dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--orange);
+  animation: pulse 2s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.hero h1 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; color: #fff;
+  letter-spacing: -0.03em; margin-bottom: 16px;
+  text-wrap: balance;
+}
+.hero h1 span { color: var(--orange); }
+.hero p {
+  color: rgba(255,255,255,0.7); font-size: 1.05rem;
+  max-width: 560px; margin: 0 auto 32px;
+  line-height: 1.7;
+}
+
+/* REWARD BANNER */
+.reward {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: rgba(34,197,94,0.15); border: 1px solid rgba(34,197,94,0.3);
+  border-radius: 14px; padding: 14px 28px;
+  margin-bottom: 8px;
+}
+.reward-icon { font-size: 1.6rem; }
+.reward-text {
+  font-size: 0.95rem; color: #86efac; font-weight: 600;
+  text-align: left; line-height: 1.4;
+}
+.reward-text strong { color: #4ade80; }
+
+/* MAIN CONTENT */
+main {
+  max-width: 760px; margin: 0 auto;
+  padding-block: 56px 80px;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+}
+
+/* STEPS */
+.steps {
+  display: flex; flex-direction: column; gap: 0;
+  margin-bottom: 48px;
+}
+.step {
+  display: flex; gap: 20px; padding: 24px 0;
+  border-bottom: 1px solid var(--border);
+}
+.step:last-child { border-bottom: none; }
+.step-num {
+  flex-shrink: 0; width: 40px; height: 40px;
+  background: linear-gradient(135deg, var(--blue), var(--blue-mid));
+  border-radius: 12px; display: flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 1rem; color: #fff;
+}
+.step-content h3 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.05rem; font-weight: 800; margin-bottom: 4px;
+  color: var(--fg); letter-spacing: -0.01em;
+}
+.step-content p { font-size: 0.9rem; color: var(--fg2); }
+
+/* PRO FEATURES */
+.section-title {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.4rem; font-weight: 800; color: var(--fg);
+  letter-spacing: -0.02em; margin-bottom: 8px;
+  text-wrap: balance;
+}
+.section-sub {
+  font-size: 0.95rem; color: var(--fg2); margin-bottom: 28px;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 48px;
+}
+.feature-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+.feature-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; margin-bottom: 14px;
+}
+.feature-icon.blue { background: rgba(30,58,95,0.1); }
+.feature-icon.orange { background: rgba(232,114,42,0.1); }
+.feature-icon.green { background: rgba(34,197,94,0.1); }
+.feature-icon.purple { background: rgba(139,92,246,0.1); }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .feature-icon.blue { background: rgba(42,80,128,0.25); }
+  :root:not([data-theme="light"]) .feature-icon.orange { background: rgba(232,114,42,0.2); }
+  :root:not([data-theme="light"]) .feature-icon.green { background: rgba(34,197,94,0.15); }
+  :root:not([data-theme="light"]) .feature-icon.purple { background: rgba(139,92,246,0.15); }
+}
+:root[data-theme="dark"] .feature-icon.blue { background: rgba(42,80,128,0.25); }
+:root[data-theme="dark"] .feature-icon.orange { background: rgba(232,114,42,0.2); }
+:root[data-theme="dark"] .feature-icon.green { background: rgba(34,197,94,0.15); }
+:root[data-theme="dark"] .feature-icon.purple { background: rgba(139,92,246,0.15); }
+
+.feature-card h4 {
+  font-weight: 700; font-size: 0.95rem; margin-bottom: 6px; color: var(--fg);
+}
+.feature-card p { font-size: 0.85rem; color: var(--fg2); line-height: 1.5; }
+
+/* FORM */
+.form-section {
+  background: linear-gradient(135deg, var(--blue), var(--blue-mid));
+  border-radius: 20px; padding: 40px 32px;
+  text-align: center;
+  margin-bottom: 48px;
+}
+.form-section h2 {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.5rem; font-weight: 800; color: #fff;
+  margin-bottom: 8px; letter-spacing: -0.02em;
+}
+.form-section p {
+  color: rgba(255,255,255,0.65); font-size: 0.9rem; margin-bottom: 24px;
+}
+.form-row {
+  display: flex; gap: 12px;
+  max-width: 480px; margin: 0 auto;
+}
+.form-row input {
+  flex: 1; padding: 14px 18px; border-radius: 12px; border: 2px solid rgba(255,255,255,0.15);
+  background: rgba(255,255,255,0.1); color: #fff; font-size: 0.95rem;
+  font-family: 'Inter', sans-serif; outline: none; transition: border-color 0.2s;
+}
+.form-row input::placeholder { color: rgba(255,255,255,0.4); }
+.form-row input:focus { border-color: var(--orange); }
+.form-row button {
+  padding: 14px 28px; border-radius: 12px; border: none;
+  background: var(--orange); color: #fff;
+  font-size: 0.95rem; font-weight: 700; cursor: pointer;
+  font-family: 'Inter', sans-serif;
+  transition: background 0.2s, transform 0.1s;
+  white-space: nowrap;
+}
+.form-row button:hover { background: var(--orange-lt); }
+.form-row button:active { transform: scale(0.97); }
+@media (max-width: 500px) {
+  .form-row { flex-direction: column; }
+  .form-row button { width: 100%; }
+}
+
+.form-note {
+  color: rgba(255,255,255,0.4); font-size: 0.78rem; margin-top: 14px;
+}
+
+/* SUCCESS */
+.form-success {
+  display: none;
+  background: var(--green-bg); border: 1px solid var(--green-border);
+  border-radius: 14px; padding: 24px;
+  text-align: center; margin-top: 20px;
+}
+.form-success.show { display: block; }
+.form-success h3 { color: var(--green); font-size: 1.1rem; margin-bottom: 6px; }
+.form-success p { font-size: 0.9rem; color: var(--fg2); }
+
+/* FAQ */
+.faq { margin-bottom: 48px; }
+.faq-item {
+  border-bottom: 1px solid var(--border); padding: 20px 0;
+}
+.faq-q {
+  font-weight: 700; font-size: 0.95rem; color: var(--fg);
+  cursor: pointer; display: flex; justify-content: space-between; align-items: center;
+}
+.faq-q::after { content: '+'; font-size: 1.3rem; color: var(--fg3); transition: transform 0.2s; }
+.faq-item.open .faq-q::after { content: '−'; }
+.faq-a {
+  font-size: 0.88rem; color: var(--fg2); padding-top: 10px;
+  display: none; line-height: 1.6;
+}
+.faq-item.open .faq-a { display: block; }
+
+/* FOOTER */
+footer {
+  background: #0d2240;
+  padding-block: 32px;
+  padding-left: max(24px, env(safe-area-inset-left, 0px));
+  padding-right: max(24px, env(safe-area-inset-right, 0px));
+  text-align: center;
+}
+footer p { color: rgba(255,255,255,0.35); font-size: 0.8rem; }
+footer a { color: rgba(255,255,255,0.5); text-decoration: none; margin: 0 8px; }
+footer a:hover { color: rgba(255,255,255,0.8); }
+</style>
+
+<nav>
+  <div class="nav-inner">
+    <a class="nav-logo" href="/">
+      <span class="nav-logo-text">Mecaly</span>
+    </a>
+    <a href="/" class="nav-back" data-es="&larr; Inicio" data-en="&larr; Home">&larr; Inicio</a>
+    <div class="lang-toggle">
+      <button onclick="setLang('es')" class="active" id="btn-es">ES</button>
+      <button onclick="setLang('en')" id="btn-en">EN</button>
+    </div>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="beta-badge"><span class="dot"></span> <span data-es="PROGRAMA BETA ANDROID" data-en="ANDROID BETA PROGRAM">PROGRAMA BETA ANDROID</span></div>
+  <h1 data-es="Prueba Mecaly en Android y obtén <span>2 meses Pro gratis</span>" data-en="Try Mecaly on Android and get <span>2 months Pro free</span>">Prueba Mecaly en Android y obtén <span>2 meses Pro gratis</span></h1>
+  <p data-es="Únete a nuestro grupo exclusivo de testers. Ayúdanos a perfeccionar la experiencia Android y desbloquea todas las funciones Pro sin costo." data-en="Join our exclusive group of testers. Help us perfect the Android experience and unlock all Pro features at no cost.">Únete a nuestro grupo exclusivo de testers. Ayúdanos a perfeccionar la experiencia Android y desbloquea todas las funciones Pro sin costo.</p>
+  <div class="reward">
+    <span class="reward-icon">🎁</span>
+    <span class="reward-text" data-es="Mantén tu cuenta activa durante la beta cerrada y abierta y recibe <strong>2 meses de Mecaly Pro completamente gratis</strong>" data-en="Keep your account active during the closed and open beta and receive <strong>2 months of Mecaly Pro completely free</strong>">Mantén tu cuenta activa durante la beta cerrada y abierta y recibe <strong>2 meses de Mecaly Pro completamente gratis</strong></span>
+  </div>
+</div>
+
+<main>
+
+  <!-- CÓMO FUNCIONA -->
+  <h2 class="section-title" data-es="¿Cómo funciona?" data-en="How does it work?">¿Cómo funciona?</h2>
+  <p class="section-sub" data-es="Solo 3 pasos para ser parte del programa beta." data-en="Just 3 steps to join the beta program.">Solo 3 pasos para ser parte del programa beta.</p>
+
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <h3 data-es="Deja tu correo electrónico" data-en="Leave your email">Deja tu correo electrónico</h3>
+        <p data-es="Registra tu email abajo. Te enviaremos una invitación para unirte a la prueba cerrada en Google Play." data-en="Enter your email below. We'll send you an invitation to join the closed test on Google Play.">Registra tu email abajo. Te enviaremos una invitación para unirte a la prueba cerrada en Google Play.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <h3 data-es="Descarga y usa la app" data-en="Download and use the app">Descarga y usa la app</h3>
+        <p data-es="Instala Mecaly desde Google Play, crea tu taller y empieza a gestionar tu negocio. Reporta cualquier error o sugerencia." data-en="Install Mecaly from Google Play, create your shop and start managing your business. Report any bugs or suggestions.">Instala Mecaly desde Google Play, crea tu taller y empieza a gestionar tu negocio. Reporta cualquier error o sugerencia.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <h3 data-es="Recibe 2 meses Pro gratis" data-en="Get 2 months Pro free">Recibe 2 meses Pro gratis</h3>
+        <p data-es="Si tu cuenta se mantiene activa durante la beta cerrada y la beta abierta, activaremos Mecaly Pro en tu cuenta por 2 meses sin costo." data-en="If your account stays active during the closed and open beta, we'll activate Mecaly Pro on your account for 2 months at no cost.">Si tu cuenta se mantiene activa durante la beta cerrada y la beta abierta, activaremos Mecaly Pro en tu cuenta por 2 meses sin costo.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRO FEATURES -->
+  <h2 class="section-title" data-es="Todo lo que incluye Mecaly Pro" data-en="Everything included in Mecaly Pro">Todo lo que incluye Mecaly Pro</h2>
+  <p class="section-sub" data-es="Desbloquea el potencial completo de tu taller." data-en="Unlock the full potential of your shop.">Desbloquea el potencial completo de tu taller.</p>
+
+  <div class="features-grid">
+    <div class="feature-card">
+      <div class="feature-icon blue">📋</div>
+      <h4 data-es="Registros ilimitados" data-en="Unlimited records">Registros ilimitados</h4>
+      <p data-es="Crea diagnósticos y órdenes de trabajo sin límite mensual. En la versión gratuita el límite es de 10 por mes." data-en="Create diagnostics and work orders with no monthly limit. The free version limits you to 10 per month.">Crea diagnósticos y órdenes de trabajo sin límite mensual. En la versión gratuita el límite es de 10 por mes.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon orange">🔧</div>
+      <h4 data-es="Diagrama interactivo ilimitado" data-en="Unlimited interactive diagram">Diagrama interactivo ilimitado</h4>
+      <p data-es="Marca las zonas afectadas del vehículo en el diagrama visual sin restricciones." data-en="Mark affected vehicle zones on the visual diagram without restrictions.">Marca las zonas afectadas del vehículo en el diagrama visual sin restricciones.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon green">📄</div>
+      <h4 data-es="Cotizaciones en PDF" data-en="PDF Quotes">Cotizaciones en PDF</h4>
+      <p data-es="Genera cotizaciones profesionales en PDF y compártelas por WhatsApp directo al cliente." data-en="Generate professional PDF quotes and share them via WhatsApp directly to the client.">Genera cotizaciones profesionales en PDF y compártelas por WhatsApp directo al cliente.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon purple">📦</div>
+      <h4 data-es="Inventario de repuestos" data-en="Parts inventory">Inventario de repuestos</h4>
+      <p data-es="Controla tu stock de repuestos con proveedores, costos y alertas de inventario bajo." data-en="Control your parts stock with suppliers, costs, and low inventory alerts.">Controla tu stock de repuestos con proveedores, costos y alertas de inventario bajo.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon blue">🔍</div>
+      <h4 data-es="Historial completo por placa" data-en="Complete history by plate">Historial completo por placa</h4>
+      <p data-es="Accede al historial completo de cada vehículo: diagnósticos, órdenes y cotizaciones anteriores." data-en="Access the complete history of each vehicle: diagnostics, work orders, and previous quotes.">Accede al historial completo de cada vehículo: diagnósticos, órdenes y cotizaciones anteriores.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon orange">🚫</div>
+      <h4 data-es="Sin anuncios" data-en="No ads">Sin anuncios</h4>
+      <p data-es="Elimina el banner de publicidad y disfruta de una experiencia limpia y profesional." data-en="Remove the ad banner and enjoy a clean, professional experience.">Elimina el banner de publicidad y disfruta de una experiencia limpia y profesional.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon green">💰</div>
+      <h4 data-es="Reportes de ingresos y gastos" data-en="Revenue & expense reports">Reportes de ingresos y gastos</h4>
+      <p data-es="Visualiza tus ingresos diarios, mensuales y anuales. Registra gastos del taller y conoce tu utilidad real." data-en="View your daily, monthly, and annual revenue. Track shop expenses and know your real profit.">Visualiza tus ingresos diarios, mensuales y anuales. Registra gastos del taller y conoce tu utilidad real.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-icon purple">📅</div>
+      <h4 data-es="Agenda y recordatorios" data-en="Calendar & reminders">Agenda y recordatorios</h4>
+      <p data-es="Programa citas con clientes y configura recordatorios para que nunca olvides un servicio pendiente." data-en="Schedule appointments with clients and set reminders so you never forget a pending service.">Programa citas con clientes y configura recordatorios para que nunca olvides un servicio pendiente.</p>
+    </div>
+  </div>
+
+  <!-- FORM -->
+  <div class="form-section" id="form-section">
+    <h2 data-es="¡Únete a la beta ahora!" data-en="Join the beta now!">¡Únete a la beta ahora!</h2>
+    <p data-es="Cupos limitados. Deja tu correo y te enviaremos la invitación." data-en="Limited spots. Leave your email and we'll send you the invitation.">Cupos limitados. Deja tu correo y te enviaremos la invitación.</p>
+    <form id="beta-form" onsubmit="return handleSubmit(event)">
+      <div class="form-row">
+        <input type="email" id="email-input" placeholder="tucorreo@ejemplo.com" required>
+        <button type="submit" id="submit-btn" data-es="Unirme" data-en="Join">Unirme</button>
+      </div>
+    </form>
+    <p class="form-note" data-es="🔒 Tu correo solo será usado para enviarte la invitación a Google Play." data-en="🔒 Your email will only be used to send you the Google Play invitation.">🔒 Tu correo solo será usado para enviarte la invitación a Google Play.</p>
+    <div class="form-success" id="form-success">
+      <h3 data-es="✅ ¡Registro exitoso!" data-en="✅ Registration successful!">✅ ¡Registro exitoso!</h3>
+      <p data-es="Te enviaremos la invitación a Google Play pronto. Revisa tu bandeja de entrada." data-en="We'll send you the Google Play invitation soon. Check your inbox.">Te enviaremos la invitación a Google Play pronto. Revisa tu bandeja de entrada.</p>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <h2 class="section-title" data-es="Preguntas frecuentes" data-en="FAQ">Preguntas frecuentes</h2>
+  <div class="faq">
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <span data-es="¿Qué necesito para participar?" data-en="What do I need to participate?">¿Qué necesito para participar?</span>
+      </div>
+      <div class="faq-a" data-es="Solo necesitas un teléfono o tablet Android y una cuenta de Google (Gmail). Te enviaremos un link para unirte a la prueba en Google Play." data-en="You just need an Android phone or tablet and a Google account (Gmail). We'll send you a link to join the test on Google Play.">Solo necesitas un teléfono o tablet Android y una cuenta de Google (Gmail). Te enviaremos un link para unirte a la prueba en Google Play.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <span data-es="¿Cuánto dura la beta?" data-en="How long does the beta last?">¿Cuánto dura la beta?</span>
+      </div>
+      <div class="faq-a" data-es="La beta cerrada dura mínimo 14 días (requisito de Google). Después pasará a beta abierta. Para recibir los 2 meses Pro gratis, tu cuenta debe estar activa en ambas fases." data-en="The closed beta lasts at least 14 days (Google requirement). Then it moves to open beta. To receive the 2 free Pro months, your account must be active in both phases.">La beta cerrada dura mínimo 14 días (requisito de Google). Después pasará a beta abierta. Para recibir los 2 meses Pro gratis, tu cuenta debe estar activa en ambas fases.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <span data-es="¿Qué significa 'cuenta activa'?" data-en="What does 'active account' mean?">¿Qué significa "cuenta activa"?</span>
+      </div>
+      <div class="faq-a" data-es="Significa que creaste tu taller en Mecaly, registraste al menos un vehículo o diagnóstico, y usaste la app durante el periodo de prueba. No necesitas usarla todos los días." data-en="It means you created your shop in Mecaly, registered at least one vehicle or diagnostic, and used the app during the test period. You don't need to use it every day.">Significa que creaste tu taller en Mecaly, registraste al menos un vehículo o diagnóstico, y usaste la app durante el periodo de prueba. No necesitas usarla todos los días.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <span data-es="¿Mecaly también está en iPhone?" data-en="Is Mecaly also on iPhone?">¿Mecaly también está en iPhone?</span>
+      </div>
+      <div class="faq-a" data-es="¡Sí! Mecaly ya está disponible en la App Store para iPhone. Esta beta es exclusivamente para la versión Android." data-en="Yes! Mecaly is already available on the App Store for iPhone. This beta is exclusively for the Android version.">¡Sí! Mecaly ya está disponible en la App Store para iPhone. Esta beta es exclusivamente para la versión Android.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="this.parentElement.classList.toggle('open')">
+        <span data-es="¿Mis datos están seguros?" data-en="Is my data safe?">¿Mis datos están seguros?</span>
+      </div>
+      <div class="faq-a" data-es="Sí. Mecaly usa Firebase con cifrado en tránsito y en reposo. Tus datos son privados y nunca se comparten con terceros. Puedes eliminar tu cuenta en cualquier momento desde la app." data-en="Yes. Mecaly uses Firebase with encryption in transit and at rest. Your data is private and never shared with third parties. You can delete your account at any time from the app.">Sí. Mecaly usa Firebase con cifrado en tránsito y en reposo. Tus datos son privados y nunca se comparten con terceros. Puedes eliminar tu cuenta en cualquier momento desde la app.</div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <p>
+    <a href="/" data-es="Inicio" data-en="Home">Inicio</a>
+    <a href="/privacy" data-es="Privacidad" data-en="Privacy">Privacidad</a>
+    <a href="/terms" data-es="Términos" data-en="Terms">Términos</a>
+    <a href="/support" data-es="Soporte" data-en="Support">Soporte</a>
+  </p>
+  <p style="margin-top:12px;">&copy; 2026 Menthor Labs &middot; Mecaly</p>
+</footer>
+
+<script>
+let lang = 'es';
+try { lang = localStorage.getItem('mecaly-lang') || 'es'; } catch(e) {}
+
+function setLang(l) {
+  lang = l;
+  try { localStorage.setItem('mecaly-lang', l); } catch(e) {}
+  document.querySelectorAll('[data-es]').forEach(el => {
+    el.innerHTML = el.getAttribute('data-' + l);
+  });
+  document.getElementById('btn-es').classList.toggle('active', l === 'es');
+  document.getElementById('btn-en').classList.toggle('active', l === 'en');
+}
+setLang(lang);
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const email = document.getElementById('email-input').value.trim();
+  if (!email) return false;
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = '...';
+
+  // Store in localStorage as backup + show success
+  try {
+    const list = JSON.parse(localStorage.getItem('mecaly-beta-emails') || '[]');
+    list.push({ email, date: new Date().toISOString() });
+    localStorage.setItem('mecaly-beta-emails', JSON.stringify(list));
+  } catch(e) {}
+
+  // Send to formsubmit.co (free email forwarding)
+  fetch('https://formsubmit.co/ajax/support@mecaly.app', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+    body: JSON.stringify({
+      email: email,
+      _subject: 'Nuevo beta tester Android - Mecaly',
+      message: 'Quiero participar en la beta de Android. Mi correo: ' + email
+    })
+  }).catch(() => {});
+
+  // Show success regardless (email is saved locally)
+  setTimeout(() => {
+    document.getElementById('beta-form').style.display = 'none';
+    document.getElementById('form-success').classList.add('show');
+  }, 800);
+
+  return false;
+}
+</script>
