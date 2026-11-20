@@ -127,6 +127,28 @@ nav {
   gap: 6px;
 }
 .nav-cta:hover { background: var(--orange-lt); transform: translateY(-1px); }
+.nav-page-links {
+  display: flex; align-items: center; gap: 20px;
+}
+.nav-page-links a {
+  color: rgba(255,255,255,0.7); font-size: 0.85rem; text-decoration: none;
+  font-weight: 500; transition: color 0.2s;
+}
+.nav-page-links a:hover { color: #fff; }
+.nav-hamburger {
+  display: none; background: none; border: none; color: #fff;
+  font-size: 1.5rem; cursor: pointer; padding: 4px;
+}
+@media (max-width: 700px) {
+  .nav-page-links { display: none; }
+  .nav-page-links.open {
+    display: flex; flex-direction: column; position: absolute;
+    top: 100%; left: 0; right: 0; background: rgba(30,58,95,0.98);
+    padding: 16px 24px; gap: 14px; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .nav-hamburger { display: block; }
+  .nav-inner { flex-wrap: wrap; }
+}
 
 /* HERO */
 .hero {
@@ -946,6 +968,13 @@ footer {
       <img id="nav-icon" src="" alt="Mecaly">
       <span class="nav-logo-text">Mecaly</span>
     </a>
+    <button class="nav-hamburger" onclick="document.querySelector('.nav-page-links').classList.toggle('open')" aria-label="Menu">☰</button>
+    <div class="nav-page-links">
+      <a href="/beta" data-es="Beta Android 🔥" data-en="Android Beta 🔥">Beta Android 🔥</a>
+      <a href="/support" data-es="Soporte" data-en="Support">Soporte</a>
+      <a href="/privacy" data-es="Privacidad" data-en="Privacy">Privacidad</a>
+      <a href="/terms" data-es="Términos" data-en="Terms">Términos</a>
+    </div>
     <div class="nav-links">
       <button class="lang-btn" onclick="toggleLang()" id="lang-toggle">EN</button>
       <a href="https://apps.apple.com/app/mecaly" class="nav-cta" target="_blank">
