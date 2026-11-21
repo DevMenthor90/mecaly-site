@@ -1520,7 +1520,7 @@ function toggleLang() {
     if (text) {
       if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
         el.placeholder = text;
-      } else if (el.tagName === 'H2' && text.includes('<em>')) {
+      } else if (text.includes('<')) {
         el.innerHTML = text;
       } else {
         el.textContent = text;
