@@ -696,7 +696,9 @@ nav {
   transition: all 0.2s;
 }
 .app-badge:hover { background: rgba(255,255,255,0.2); transform: translateY(-2px); }
+.app-badge.coming-soon { opacity: 0.85; pointer-events: none; }
 .app-badge-icon { font-size: 1.4rem; }
+.app-badge-status { font-size: 0.6rem; opacity: 0.7; font-weight: 400; margin-top: 2px; }
 
 /* FOOTER */
 footer {
@@ -1443,13 +1445,22 @@ footer {
   <h2 data-es="Tu taller merece tecnología de punta" data-en="Your shop deserves top technology">Tu taller merece<br>tecnología de punta</h2>
   <p data-es="Únete a cientos de mecánicos que ya digitalizaron su negocio con Mecaly." data-en="Join hundreds of mechanics who have already digitized their business with Mecaly.">Únete a cientos de mecánicos que ya digitalizaron su negocio con Mecaly.</p>
   <div class="app-badges">
-    <a href="https://apps.apple.com/app/mecaly" class="app-badge" target="_blank">
+    <div class="app-badge coming-soon">
       <span class="app-badge-icon">🍎</span>
       <div>
-        <div style="font-size:0.7rem;opacity:0.7;" data-es="Disponible en" data-en="Available on">Disponible en</div>
+        <div style="font-size:0.7rem;opacity:0.7;" data-es="Próximamente en" data-en="Coming soon to">Próximamente en</div>
         <div>App Store</div>
+        <div class="app-badge-status" data-es="En fase de aprobación" data-en="Under review">En fase de aprobación</div>
       </div>
-    </a>
+    </div>
+    <div class="app-badge coming-soon">
+      <span class="app-badge-icon">▶️</span>
+      <div>
+        <div style="font-size:0.7rem;opacity:0.7;" data-es="Próximamente en" data-en="Coming soon to">Próximamente en</div>
+        <div>Google Play</div>
+        <div class="app-badge-status" data-es="En fase de pruebas" data-en="In testing phase">En fase de pruebas</div>
+      </div>
+    </div>
   </div>
 </section>
 
