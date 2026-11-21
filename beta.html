@@ -75,6 +75,28 @@ nav {
   transition: all 0.2s; font-family: 'Inter', sans-serif;
 }
 .lang-toggle button.active { background: rgba(255,255,255,0.2); color: #fff; }
+.nav-page-links { display: flex; align-items: center; gap: 20px; }
+.nav-page-links a {
+  color: rgba(255,255,255,0.7); font-size: 0.85rem; text-decoration: none;
+  font-weight: 500; transition: color 0.2s;
+}
+.nav-page-links a:hover { color: #fff; }
+.nav-beta-link { font-weight: 700 !important; }
+.nav-beta-link span { color: #4ade80; font-weight: 800; text-shadow: 0 0 8px rgba(74,222,128,0.4); }
+.nav-hamburger {
+  display: none; background: none; border: none; color: #fff;
+  font-size: 1.5rem; cursor: pointer; padding: 4px;
+}
+@media (max-width: 700px) {
+  .nav-page-links { display: none; }
+  .nav-page-links.open {
+    display: flex; flex-direction: column; position: absolute;
+    top: 100%; left: 0; right: 0; background: rgba(30,58,95,0.98);
+    padding: 16px 24px; gap: 14px; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .nav-hamburger { display: block; }
+  .nav-inner { flex-wrap: wrap; }
+}
 
 /* HERO */
 .hero {
@@ -314,7 +336,14 @@ footer a:hover { color: rgba(255,255,255,0.8); }
     <a class="nav-logo" href="/">
       <span class="nav-logo-text">Mecaly</span>
     </a>
-    <a href="/" class="nav-back" data-es="&larr; Inicio" data-en="&larr; Home">&larr; Inicio</a>
+    <button class="nav-hamburger" onclick="document.querySelector('.nav-page-links').classList.toggle('open')" aria-label="Menu">☰</button>
+    <div class="nav-page-links">
+      <a href="/" data-es="Inicio" data-en="Home">Inicio</a>
+      <a href="/beta" class="nav-beta-link" data-es="Beta <span>Abierta</span> Android" data-en="<span>Open</span> Beta Android">Beta <span>Abierta</span> Android</a>
+      <a href="/support" data-es="Soporte" data-en="Support">Soporte</a>
+      <a href="/privacy" data-es="Privacidad" data-en="Privacy">Privacidad</a>
+      <a href="/terms" data-es="Términos" data-en="Terms">Términos</a>
+    </div>
     <div class="lang-toggle">
       <button onclick="setLang('es')" class="active" id="btn-es">ES</button>
       <button onclick="setLang('en')" id="btn-en">EN</button>

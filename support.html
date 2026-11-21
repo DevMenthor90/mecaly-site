@@ -1,10 +1,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Support — Mecaly</title>
+<title>Soporte — Mecaly</title>
+<meta name="description" content="Centro de soporte de Mecaly. Contacta a nuestro equipo por correo electrónico para ayuda con la app de gestión de talleres mecánicos.">
+<link rel="canonical" href="https://mecaly.app/support">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png">
 <link rel="apple-touch-icon" href="/icon-192.png">
 <meta name="claude:viewport-fit-sides" content="cover">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mecaly.app/support">
+<meta property="og:title" content="Soporte — Mecaly">
+<meta property="og:description" content="Contacta al equipo de soporte de Mecaly para ayuda con tu taller.">
+<meta property="og:image" content="https://mecaly.app/og-image.png">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Bricolage+Grotesque:wght@700;800&display=swap">
 <style>
 :root {
@@ -37,6 +44,18 @@ nav {
 .lang-toggle { display: flex; background: rgba(255,255,255,0.1); border-radius: 8px; overflow: hidden; }
 .lang-toggle button { background: none; border: none; color: rgba(255,255,255,0.6); font-size: 0.8rem; font-weight: 600; padding: 6px 12px; cursor: pointer; transition: all 0.2s; font-family: 'Inter', sans-serif; }
 .lang-toggle button.active { background: rgba(255,255,255,0.2); color: #fff; }
+.nav-page-links { display: flex; align-items: center; gap: 20px; }
+.nav-page-links a { color: rgba(255,255,255,0.7); font-size: 0.85rem; text-decoration: none; font-weight: 500; transition: color 0.2s; }
+.nav-page-links a:hover { color: #fff; }
+.nav-beta-link { font-weight: 700 !important; }
+.nav-beta-link span { color: #4ade80; font-weight: 800; text-shadow: 0 0 8px rgba(74,222,128,0.4); }
+.nav-hamburger { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; padding: 4px; }
+@media (max-width: 700px) {
+  .nav-page-links { display: none; }
+  .nav-page-links.open { display: flex; flex-direction: column; position: absolute; top: 100%; left: 0; right: 0; background: rgba(30,58,95,0.98); padding: 16px 24px; gap: 14px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .nav-hamburger { display: block; }
+  .nav-inner { flex-wrap: wrap; }
+}
 
 .hero-strip {
   background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%);
@@ -124,7 +143,14 @@ footer a:hover { color: rgba(255,255,255,0.8); }
 <nav>
   <div class="nav-inner">
     <a class="nav-logo" href="/"><span class="nav-logo-text">Mecaly</span></a>
-    <a href="/" class="nav-back" data-es="← Inicio" data-en="← Home">← Inicio</a>
+    <button class="nav-hamburger" onclick="document.querySelector('.nav-page-links').classList.toggle('open')" aria-label="Menu">☰</button>
+    <div class="nav-page-links">
+      <a href="/" data-es="Inicio" data-en="Home">Inicio</a>
+      <a href="/beta" class="nav-beta-link" data-es="Beta <span>Abierta</span> Android" data-en="<span>Open</span> Beta Android">Beta <span>Abierta</span> Android</a>
+      <a href="/support" data-es="Soporte" data-en="Support">Soporte</a>
+      <a href="/privacy" data-es="Privacidad" data-en="Privacy">Privacidad</a>
+      <a href="/terms" data-es="Términos" data-en="Terms">Términos</a>
+    </div>
     <div class="lang-toggle">
       <button onclick="setLang('es')" class="active" id="btn-es">ES</button>
       <button onclick="setLang('en')" id="btn-en">EN</button>
